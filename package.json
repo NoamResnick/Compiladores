@@ -1,0 +1,16 @@
+{
+  "name": "http-compiler",
+  "version": "1.0.0",
+  "description": "Compiler for HTTP requests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Noam Resnick",
+  "license": "ISC",
+  "dependencies": {
+    "install": "^0.13.0",
+    "minimist": "^1.2.6",
+    "ohm-js": "^16.3.2"
+  }
+}

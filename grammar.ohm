@@ -1,0 +1,26 @@
+httpGrammar {
+    CommandBlock = (Command ";")+
+
+    Command = Declaration --declaration
+            | variable "ADD HEADER" key value -- add_header
+            | variable "ADD PARAM" key value -- add_query_param
+            | variable "ADD BODY" (~";" any)+ -- add_body
+            | variable "REMOVE HEADER" key -- remove_header 
+            | variable "REMOVE PARAM" key -- remove_param
+            | variable "REMOVE BODY" -- remove_body
+            | "//" (~";" any)+ -- comment
+
+    Declaration = variable "=" method url
+
+    method = "GET"
+            | "POST"
+            | "PUT"
+            | "DELETE"
+
+    variable = (~";" letter)+
+    url = ("http://"|"https://")((alnum+)".")+((alnum|"/")+)("?"(alnum+)"="(alnum+)("&"(alnum+)"="(alnum+))*)?
+    
+    special = "_"|":"|";"|"."|","|"\\"|"/"|"\""|"'"|"?"|"!"|"("|")"|"{"|"}"|"["|"]"|"@"|"<"|">"|"="|"-"|"+"|"*"|"#"|"$"|"&"|"|"|"~"|"^"|"%"
+    key = (~";" (alnum|"-"|"_"))+
+    value = (~";" (alnum|special))+
+}
